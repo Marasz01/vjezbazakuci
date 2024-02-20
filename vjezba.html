@@ -1,36 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moja stranica</title>
+    <title>Guess the Number Game</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #result {
+            font-size: 20px;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Dobrodošči na moju stranicu!</h1>
-    </header>
-    <nav>
-        <a href="#section1">Prvi dio</a> |
-        <a href="#section2">Drugi dio</a>
-    </nav>
-    <main>
-        <section id="section1">
-            <h2>Prvi dio</h2>
-            <p>Ovo je prvi dio oje stranice.</p>
-        </section>
-        <section id="section2">
-            <h2>Drugi dio</h2>
-            <p>Ovo je drugi dio moje stranice.</p>
-        </section>
-    </main>
-    <footer>
-        <p>Copyright &copy; 2024 Ivan Maras</p>
-    </footer>
+    <h1>Guess the Number Game</h1>
+    <p>Guess a number between 1 and 100:</p>
+    <input type="number" id="guessField">
+    <button onclick="checkGuess()">Submit Guess</button>
+    <p id="result"></p>
+
+    <script>
+        // Generate random number between 1 and 100
+        const correctNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            const userGuess = parseInt(document.getElementById('guessField').value);
+            const result = document.getElementById('result');
+
+            if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+                result.textContent = 'Please enter a valid number between 1 and 100.';
+                return;
+            }
+
+            attempts++;
+
+            if (userGuess === correctNumber) {
+                result.textContent = `Congratulations! You guessed the correct number ${correctNumber} in ${attempts} attempts!`;
+                document.getElementById('guessField').disabled = true;
+            } else if (userGuess < correctNumber) {
+                result.textContent = 'Your guess is too low. Try again!';
+            } else {
+                result.textContent = 'Your guess is too high. Try again!';
+            }
+        }
+    </script>
 </body>
 </html>
