@@ -3,50 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guess the Number Game</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        #result {
-            font-size: 20px;
-            margin-top: 20px;
-        }
-    </style>
+    <title>Obrazac</title>
 </head>
+
 <body>
-    <h1>Guess the Number Game</h1>
-    <p>Guess a number between 1 and 100:</p>
-    <input type="number" id="guessField">
-    <button onclick="checkGuess()">Submit Guess</button>
-    <p id="result"></p>
+<form name="obrazac" action="" method="post"
+enctype="multipart/form-data" autocomplete="off">
+<p>
+    <label for="Ime">Ime i prezime</label><br>
+    <input id="Ime" name="imeiprezime" type="text" size="30" required>
+</p>
 
-    <script>
-        // Generate random number between 1 and 100
-        const correctNumber = Math.floor(Math.random() * 100) + 1;
-        let attempts = 0;
+<p>
+    <label for="email"> E-mail adresa</label><br>
+    <input id="email" name="email" type="email">
+</p>
 
-        function checkGuess() {
-            const userGuess = parseInt(document.getElementById('guessField').value);
-            const result = document.getElementById('result');
+<p>
+    <label for="sifra">Vaša šifra</label><br>
+    <input id="sifra" name="pass" type="password">
+</p>
 
-            if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
-                result.textContent = 'Please enter a valid number between 1 and 100.';
-                return;
-            }
+<p>
+    <label for="document">Priložite dokument</label><br>
+    <input id="document" name="document" type="file">
+</p>
 
-            attempts++;
+<p>
+    <label for="komentar">Upišite vaš komentar</label><br>
+    <textarea name="komentar" id="komentar"></textarea>
+</p>
 
-            if (userGuess === correctNumber) {
-                result.textContent = `Congratulations! You guessed the correct number ${correctNumber} in ${attempts} attempts!`;
-                document.getElementById('guessField').disabled = true;
-            } else if (userGuess < correctNumber) {
-                result.textContent = 'Your guess is too low. Try again!';
-            } else {
-                result.textContent = 'Your guess is too high. Try again!';
-            }
-        }
-    </script>
+<p>
+    <input type="submit" name="submit_btn" value="Pošalji podatke">
+</p>
+
+</form>
+    
 </body>
 </html>
